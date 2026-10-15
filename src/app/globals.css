@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0806;
+  --foreground: #f3ece0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-ink: #0a0806;
+  --color-panel: #15110c;
+  --color-panel-2: #1d1710;
+  --color-gold: #d9a441;
+  --color-gold-light: #f6d488;
+  --color-gold-dark: #9a6a1f;
+  --color-muted: #a99c87;
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-saira);
+  --font-script: var(--font-script);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
+/* Metallic gold text, like the foil on the business card */
+.text-gold-foil {
+  background: linear-gradient(180deg, #fbe3a1 0%, #e0aa48 45%, #a8711f 70%, #f1c66d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-gold-foil {
+  background: linear-gradient(135deg, #f6d488 0%, #d9a441 40%, #9a6a1f 75%, #e8b95c 100%);
+}
+
+.border-gold-soft {
+  border-color: rgb(217 164 65 / 0.35);
+}
+
+/* The "═══ TITLE ═══" speed lines either side of headings */
+.speed-lines {
+  display: inline-block;
+  width: 3rem;
+  height: 0.6rem;
+  background: repeating-linear-gradient(
+    180deg,
+    #d9a441 0 2px,
+    transparent 2px 4px
+  );
+  mask-image: linear-gradient(90deg, transparent, #000);
+}
+
+.speed-lines.flip {
+  mask-image: linear-gradient(270deg, transparent, #000);
+}
+
+/* Diagonal gold swoosh used on card corners */
+.swoosh::before,
+.swoosh::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, #f6d488, transparent);
+  pointer-events: none;
+}
+
+.swoosh::before {
+  top: 1.25rem;
+  left: -5%;
+  transform: rotate(-8deg);
+}
+
+.swoosh::after {
+  bottom: 1.25rem;
+  right: -5%;
+  transform: rotate(-8deg);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
 }
